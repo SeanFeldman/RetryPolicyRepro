@@ -2,6 +2,7 @@
 
 namespace ReproApp
 {
+    using System.Diagnostics;
     using System.Text;
     using System.Threading.Tasks;
     using System.Transactions;
@@ -28,6 +29,7 @@ namespace ReproApp
             {
                 using (var tx = new TransactionScope(TransactionScopeOption.RequiresNew, TransactionScopeAsyncFlowOption.Enabled))
                 {
+                    Debugger.Break();
                     await sender.SendAsync(new Message(Encoding.Default.GetBytes(DateTime.Now.ToString("s"))));
 
                     Console.WriteLine("message sent");
